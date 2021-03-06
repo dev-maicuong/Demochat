@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chat</h2>
+<div class="container">
+    <input type="text" id="txtMessage" />
+    <button class="btn btn-success" id="btnSend">Send</button>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Customer Id</th>
+            <th>Customer Name</th>
+        </tr>
+    </thead>
+
+    <tbody id="tblInfo">
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+
+            // Proxy created on the fly
+            var cus = $.connection.demoChat;
+
+            // Declare a function on the job hub so the server can invoke it
+            cus.client.displayChat = function () {
+                getData();
+            };
+
+            // Start the connection
+            $.connection.hub.start();
+            getData();
+        });
+
+        function getData() {
+            var $tbl = $('#tblInfo');
+            $.ajax({
+                url: '/Home/Get',
+                type: 'GET',
+                datatype: 'json',
+                success: function (data) {
+                    $tbl.empty();
+                    $.each(data.listChat, function (i, model) {
+                        debugger
+                        $tbl.append
+                            (
+                                '<tr>' +
+                                '<td>' + model.id_mess + '</td>' +
+                                '<td>' + model.mess_content + '</td>' +
+                                '<tr>'
+                            );
+                    });
+                }
+            });
+        }
+
+    </script>
+}

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestrealTimeMessageModelStoreContainer" CdmEntityContainer="TestrealTimeMessageEntities">
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="TestrealTimeMessageModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="id_mess" ColumnName="id_mess" />
+          <ScalarProperty Name="mess_content" ColumnName="mess_content" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_userSend" ColumnName="id_userSend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
